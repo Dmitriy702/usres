@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Persons</title>
+</head>
+<body>
+<div th:switch="${persons}">
+<h2 th:case="null">No persons found!</h2>
+<div th:case="*">
+    <h2>Persons</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Last name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Birthday</th>
+            <th>Sex</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="person : ${persons}">
+            <td th:text="${person.id}"></td>
+            <td th:text="${person.name}"></td>
+            <td th:text="${person.lastname}"></td>
+            <td th:text="${person.surname}"></td>
+            <td th:text="${person.age}"></td>
+            <td th:text="${person.birthday}"></td>
+            <td th:text="${person.sex}"></td>
+            <td><a th:href="@{person-update/{id}(id=${person.id})}">Edit</a></td>
+            <td><a th:href="@{person-delete/{id}(id=${person.id})}">Delete</a></td>
+            <td><a th:href="@{address/{id}(id=${person.id})}">Address</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p><a href="/person-create">Create user</a></p>
+</div>
+</body>
+</html>

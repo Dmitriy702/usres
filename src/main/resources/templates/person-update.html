@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Update person</title>
+</head>
+<body>
+<form action="#" th:action="@{/person-update}" th:object="${person}" method="post">
+  <label for="id">ID</label>
+  <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+  <br/>
+  <label for="name">Name</label>
+  <input type="text" th:field="*{name}" id="name" placeholder="Name">
+  <br>
+  <label for="lastname">Last name</label>
+  <input type="text" th:field="*{lastname}" id="lastname" placeholder="Last name">
+  <br>
+  <label for="surname">Sur name</label>
+  <input type="text" th:field="*{surname}" id="surname" placeholder="Sur name">
+  <br>
+  <label for="age">Age</label>
+  <input type="text" th:field="*{age}" id="age" placeholder="Age">
+  <br>
+  <label for="birthday">Birthday</label>
+  <input type="date" th:field="*{birthday}" id="birthday" placeholder="Birthday">
+  <br>
+   <label for="sex">Sex</label>
+  <select name="sex" id="sex" datafld="*{sex}">
+    <option value="UNKNOWN">Unknown</option>
+    <option value="MAN">Man</option>
+    <option value="WOMAN">Woman</option>
+  </select>
+  <br>
+
+  <input type="submit" value="Update person">
+</form>
+</body>
+</html>

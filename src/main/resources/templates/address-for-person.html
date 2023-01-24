@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Address for person</title>
+</head>
+<body>
+    <h2>Person</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Country</th>
+            <th>City</th>
+            <th>Street</th>
+            <th>House</th>
+            <th>Apartment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${address.country}"></td>
+            <td th:text="${address.city}"></td>
+            <td th:text="${address.street}"></td>
+            <td th:text="${address.house}"></td>
+            <td th:text="${address.apartment}"></td>
+
+<!--            <td><a th:href="@{person-update/{id}(id=${person.id})}">Edit</a></td>-->
+<!--            <td><a th:href="@{person-delete/{id}(id=${person.id})}">Delete</a></td>-->
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p><a href="/persons">Back to list</a></p>
+</div>
+</body>
+</html>
