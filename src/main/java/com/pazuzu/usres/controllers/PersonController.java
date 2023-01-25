@@ -1,5 +1,6 @@
 package com.pazuzu.usres.controllers;
 
+import com.pazuzu.usres.models.Contact;
 import com.pazuzu.usres.models.Person;
 import com.pazuzu.usres.sevices.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class PersonController {
 
     @PostMapping("/person-create")
     public String saveUser(Person person) {
+        person.setContact(new Contact());
         personService.personSave(person);
         return "redirect:/persons";
     }

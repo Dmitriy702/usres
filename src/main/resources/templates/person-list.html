@@ -30,9 +30,11 @@
             <td th:text="${person.age}"></td>
             <td th:text="${person.birthday}"></td>
             <td th:text="${person.sex}"></td>
+
+            <td><a th:href="@{address/{id}(id=${person.id})}">Address</a></td>
+            <td><a th:href="@{contact/{id}(id=${person.id})}">Contacts</a></td>
             <td><a th:href="@{person-update/{id}(id=${person.id})}">Edit</a></td>
             <td><a th:href="@{person-delete/{id}(id=${person.id})}">Delete</a></td>
-            <td><a th:href="@{address/{id}(id=${person.id})}">Address</a></td>
         </tr>
         </tbody>
     </table>

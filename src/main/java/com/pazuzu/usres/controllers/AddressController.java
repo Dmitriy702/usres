@@ -26,11 +26,10 @@ public class AddressController {
     @GetMapping("/address/{id}")
     public String findById(@PathVariable("id") Long id, Model model) {
 
-        if (null==personService.findById(id).getAddress()){  // Почему personService.findById(id).getAddress()==null даёт NPE а наоборот нет??? годы злости!!!
-            idPerson=id;
+        if (null == personService.findById(id).getAddress()) {  // Почему personService.findById(id).getAddress()==null даёт NPE а наоборот нет??? годы злости!!!
+            idPerson = id;
             return "address-not-found";
-        }
-        else {
+        } else {
             Address address = personService.findById(id).getAddress();
             model.addAttribute("address", address);
             return "address-for-person";
@@ -46,26 +45,28 @@ public class AddressController {
     @PostMapping("/address-create")
     public String saveAddress(Address address) {
         personService.findById(idPerson).setAddress(address);//  что то подсказывает мне что так делать нельзя но как сделать лучше я не придумал :(
+        address.setPersonId(idPerson);
         addressService.addressSave(address);
         return "redirect:/persons";
     }
-//
-//    @GetMapping("person-delete/{id}")
-//    public String deletePerson(@PathVariable("id") Long id) {
-//        personService.deleteById(id);
-//        return "redirect:/persons";
-//    }
-//
-//    @GetMapping("/person-update/{id}")
-//    public String updatePersonForm(@PathVariable("id") Long id, Model model) {
-//        Person person = personService.findById(id);
-//        model.addAttribute("person", person);
-//        return "person-update";
-//    }
-//
-//    @PostMapping("/person-update")
-//    public String updatePerson(Person person) {
-//        personService.personSave(person);
-//        return "redirect:/persons";
-//    }
+
+    @GetMapping("address-delete/{id}")
+    public String deleteAddress(@PathVariable("id") Long id) {
+        personService.findById(addressService.findById(id).getPersonId()).setAddress(null);
+        addressService.deleteById(id);
+        return "redirect:/persons";
+    }
+
+    @GetMapping("/address-update/{id}")
+    public String updateAddressForm(@PathVariable("id") Long id, Model model) {
+        Address address = addressService.findById(id);
+        model.addAttribute("address", address);
+        return "address-update";
+    }
+
+    @PostMapping("/address-update")
+    public String updateAddress(Address address) {
+        addressService.addressSave(address);
+        return "redirect:/persons";
+    }
 }
